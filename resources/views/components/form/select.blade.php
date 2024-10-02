@@ -8,7 +8,7 @@
     ];
 @endphp
 
-<x-forms.field :$label :$name>
+<x-form.item :$label :$name>
     <select {{ $attributes($defaults) }}>
         {{ $slot }}
     </select>

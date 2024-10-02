@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules\File;
 use Illuminate\Validation\Rules\Password;
+use Illuminate\Validation\Rules\Unique;
 
 class RegisteredUserController extends Controller
 {
@@ -30,18 +32,26 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
+
         //validate
-        $attributes = request()->validate([
-            'first_name'    => ['required'],
-            'last_name'    => ['required'],
-            'email'         => ['required', 'email', 'unique:users', 'max:254'],
+        $userAttributes = request()->validate([
+            'name'    => ['required'],
+            'email'         => ['required', 'email', 'unique:users,email', 'max:254'],
             'password'      => ['required', Password::min(6), 'confirmed'],
         ]);
+
+        $employerAttributes = request()->validate([
+            'employer'    => ['required', 'unique:employers,name'],
+            'logo'      => ['required', File::types(['png', 'jpg', 'webp', 'svg'])],
+        ]);
         // create user
-        $user = User::create($attributes);
+        $user = User::create($userAttributes);
         
-        // Send confirmation email
-        // SendUserMailJob::dispatch($user, new ConfirmRegistration($user));
+        $logoPath = $request->logo->store('logos');
+        $user->employer()->create([
+            'name' => $employerAttributes['employer'],
+            'logo' => $logoPath,
+        ]);
         //log in
         Auth::login($user);
         //redirect

@@ -1,9 +1,9 @@
 <x-layout>
     <x-page-heading>Register</x-page-heading>
 
-    <x-form method="POST" action="/register" fileUpload='true'>
+    <x-form method="POST" action="/register" fileData>
 
-        <section id="user">
+        <section id="user" class="space-y-6">
             <x-form.input name="name" type='text' required>
                 Name
             </x-form.input>
@@ -20,7 +20,7 @@
 
         <x-form.divider />
 
-        <section id="employer">
+        <section id="employer" class="space-y-6">
             <x-form.input name="employer" type='text' required>
                 Employer Name
             </x-form.input-item>

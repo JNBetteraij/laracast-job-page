@@ -7,10 +7,7 @@
         </x-form.input>
         <x-form.input name="password" type="password">
             Password
-        </x-form.input> 
-       
-        <x-form.checkbox name="checkbox">Agree?</x-form.checkbox>
-
+        </x-form.input>
         <x-form.button>Log In</x-forms.button>
     </x-form>
 </x-layout>
