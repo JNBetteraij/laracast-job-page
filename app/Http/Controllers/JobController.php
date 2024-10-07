@@ -36,7 +36,7 @@ class JobController extends Controller
      */
     public function store(StoreJobRequest $request)
     {
-        //
+        $attributes = $request->validated;
     }
 
     /**
