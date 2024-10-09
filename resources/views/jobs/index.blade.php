@@ -10,8 +10,6 @@
             </x-form>
         </section>
 
-        <x-icon.eye.open.slash class="text-gray-300" />
-
         <section class="pt-10">
             <x-section-heading>Featured Jobs</x-section-heading>
 

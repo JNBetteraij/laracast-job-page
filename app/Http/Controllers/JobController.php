@@ -6,6 +6,8 @@ use App\Http\Requests\StoreJobRequest;
 use App\Http\Requests\UpdateJobRequest;
 use App\Models\Job;
 use App\Models\Tag;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 
 class JobController extends Controller
 {
@@ -37,6 +39,19 @@ class JobController extends Controller
     public function store(StoreJobRequest $request)
     {
         $attributes = $request->validated;
+        
+        $attributes['featured'] = $request->has('featured');
+
+        $job = Auth::user()->employer->jobs()->create(Arr::except($attributes, 'tags'));
+
+        if ($attributes['tags'] ?? false) {
+            $tags = explode(',', $attributes['tags']);
+            foreach ($tags as $tag) {
+                $job->tag($tag);
+            }
+        }
+
+        return redirect('/');
     }
 
     /**
