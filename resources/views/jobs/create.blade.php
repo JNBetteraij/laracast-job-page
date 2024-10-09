@@ -15,7 +15,7 @@
             <option>Full Time</option>
         </x-form.select>
         <x-form.input name="location" type='text' required>
-            Schedule
+            Location
         </x-form.input>
         <x-form.input name="url" type='text' required>
             URL
