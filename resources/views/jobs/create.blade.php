@@ -1,7 +1,7 @@
 <x-layout>
     <x-page-heading>New Job</x-page-heading>
 
-    <x-form method="POST" action="/register" fileData>
+    <x-form method="POST" action="/job" fileData>
 
         <x-form.input name="title" type='text' required>
             Title
