@@ -8,6 +8,7 @@ use App\Models\Job;
 use App\Models\Tag;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class JobController extends Controller
 {
@@ -38,7 +39,14 @@ class JobController extends Controller
      */
     public function store(StoreJobRequest $request)
     {
-        $attributes = $request->validated;
+        $attributes = $request->validate([
+            'title' => ['required'],
+            'salary' => ['required'],
+            'location' => ['required'],
+            'schedule' => ['required', Rule::in(['Part Time', 'Full Time'])],
+            'url' => ['required', 'active_url'],
+            'tags' => ['nullable'],
+        ]);
         
         $attributes['featured'] = $request->has('featured');
 
