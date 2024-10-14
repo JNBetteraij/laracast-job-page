@@ -23,9 +23,14 @@
 
     <x-form.divider />
 
+        <x-form.checkbox name="featured" autocomplete="off">
+            Featured (costs extra)
+        </x-form.checkbox>
+
         <x-form.input name="tags" type='text' required>
             Tags (comma seperated)
         </x-form.input>
+
 
         <x-form.button>Publish Job</x-form.button>
     </x-form>
