@@ -31,7 +31,7 @@ Route::get('/login', [SessionController::class, 'create'])
     ->name('login');
 Route::post('/login', [SessionController::class, 'store']);
 
-Route::get('/logout', [SessionController::class, 'destroy'])
+Route::delete('/logout', [SessionController::class, 'destroy'])
     ->middleware('auth')
     ->name('logout');
 #endregion
