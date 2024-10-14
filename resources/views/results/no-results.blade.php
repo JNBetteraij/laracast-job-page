@@ -1,0 +1,1 @@
+<p class="mt-6">Sorry, no results found.</p>

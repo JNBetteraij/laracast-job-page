@@ -1,3 +1,4 @@
+@props(['query' => ''])
 <x-layout>
     <div class="space-y-10">
         <x-page-heading>Results for: {{ $query }}</x-page-heading>
@@ -12,9 +13,12 @@
         <section>
 
             <div class="space-y-6">
-                @foreach ($jobs as $job)
+                {{-- @foreach ($jobs as $job)
                     <x-job-card-wide :$job />
-                @endforeach
+                @endforeach --}}
+
+                {{-- different directive with 'no result' page --}}
+                @each('components.job-card-wide', $jobs, 'job', 'results.no-results')
             </div>
         </section>
     </div>
